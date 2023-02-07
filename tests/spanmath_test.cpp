@@ -1,14 +1,27 @@
 #include <catch2/catch_test_macros.hpp>
+#include <spanmath.h>
 
-#include <cstdint>
+TEST_CASE("mat3 test", "[mat3]") {
 
-uint32_t factorial(uint32_t number) {
-  return number <= 1 ? number : factorial(number - 1) * number;
-}
+  float lhs[] = {
+      1, 1, 1, //
+      2, 2, 2, //
+      3, 3, 3, //
+  };
 
-TEST_CASE("Factorials are computed", "[factorial]") {
-  REQUIRE(factorial(1) == 1);
-  REQUIRE(factorial(2) == 2);
-  REQUIRE(factorial(3) == 6);
-  REQUIRE(factorial(10) == 3'628'800);
+  float rhs[] = {
+      2, 0, 0, //
+      0, 3, 0, //
+      0, 0, 4, //
+  };
+
+  auto mult = spanmath::Mat3(lhs) * spanmath::Mat3(rhs);
+
+  std::array<float, 9> result = {
+      2, 3, 4,  //
+      4, 6, 8,  //
+      6, 9, 12, //
+  };
+
+  REQUIRE(mult == result);
 }
