@@ -4,6 +4,15 @@
 
 namespace spanmath {
 
+template <typename T, typename U> T cast(const U &u) {
+  static_assert(sizeof(T) == sizeof(U), "same size");
+  return *((T *)&u);
+}
+
+inline float dot(std::span<const float, 3> lhs, float rx, float ry, float rz) {
+  return lhs[0] * rx + lhs[1] * ry + lhs[2] * rz;
+}
+
 ///
 /// * row major memory layout
 ///
@@ -11,17 +20,10 @@ namespace spanmath {
 /// [3, 4, 5][y] => [3x + 4y + 5z]
 /// [6, 7, 8][z]    [6x + 7y + 8z]
 ///
-
-inline float dot(std::span<const float, 3> lhs, float rx, float ry, float rz) {
-  auto [lx, ly, lz] = *((std::tuple<float, float, float> *)lhs.data());
-  return lx * rx + ly * ry + lz * rz;
-}
-
 struct Mat3 {
   std::span<float, 9> span;
 
-  template <typename T> 
-  Mat3(T &t):span((float *)&t, 9) {
+  template <typename T> Mat3(T &t) : span((float *)&t, 9) {
     static_assert(sizeof(T) == sizeof(float) * 9);
   }
 
