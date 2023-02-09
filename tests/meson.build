@@ -1,4 +1,4 @@
-catch2_dep = dependency('catch2-with-main')
+catch2_dep = dependency('catch2')
 
 executable(
     'spanmath_test',
