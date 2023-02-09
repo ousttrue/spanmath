@@ -1,4 +1,5 @@
-catch2_dep = dependency('catch2')
+gtest_dep = dependency('gtest')
+gtest_main_dep = dependency('gtest_main')
 
 executable(
     'spanmath_test',
@@ -6,5 +7,5 @@ executable(
         'spanmath_test.cpp',
     ],
     install: true,
-    dependencies: [catch2_dep, spanmath_dep],
+    dependencies: [gtest_dep, gtest_main_dep, spanmath_dep],
 )

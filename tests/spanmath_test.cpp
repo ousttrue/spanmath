@@ -1,7 +1,7 @@
-#include <catch2/catch_test_macros.hpp>
+#include <gtest/gtest.h>
 #include <spanmath.h>
 
-TEST_CASE("mat3 test", "[mat3]") {
+TEST(mat3, mat3) {
 
   float lhs[] = {
       1, 1, 1, //
@@ -23,5 +23,5 @@ TEST_CASE("mat3 test", "[mat3]") {
       6, 9, 12, //
   };
 
-  REQUIRE(mult == result);
+  ASSERT_EQ(mult, result);
 }
