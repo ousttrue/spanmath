@@ -3,3 +3,4 @@
 /subprojects/*
 !/subprojects/packagefiles/
 !/subprojects/*.wrap
+/.meson-subproject-wrap-hash.txt
